@@ -18,13 +18,14 @@ public class MainMenuController : BaseController
     {
         var objectView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), placeForUi, false);
         AddGameObjects(objectView);
-        
+        _profilePlayer.AnaliticsTools.SendMessage("Open_game");
         return objectView.GetComponent<MainMenuView>();
     }
 
     private void StartGame()
     {
         _profilePlayer.CurrentState.Value = GameState.Game;
+        _profilePlayer.AnaliticsTools.SendMessage("start_button");
     }
 }
 
